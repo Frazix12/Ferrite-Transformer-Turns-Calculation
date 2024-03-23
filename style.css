@@ -329,3 +329,14 @@ body {
     max-width: 100%;
   }
 }
+footer {
+  font-family: jetBrains Mono, monospace;
+  color: #fff;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background: #150c24;
+}
+a {
+  color: #6960c6;
+}
