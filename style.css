@@ -1,0 +1,327 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+body {
+  overflow-x: hidden;
+}
+.container {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero {
+  /* background: linear-gradient(
+      0deg,
+      rgba(13, 9, 19, 0.4) 0%,
+      rgba(13, 9, 19, 0.4) 100%
+    ),
+    url(<path-to-image>) lightgray 50% / cover no-repeat; */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  min-height: 1024px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 45px 60px;
+}
+
+@media (max-width: 991px) {
+  .hero {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-content {
+  position: relative;
+  display: flex;
+  width: 691px;
+  max-width: 100%;
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .hero-content {
+    max-width: 100%;
+  }
+}
+
+.row {
+  gap: 20px;
+  display: flex;
+}
+
+@media (max-width: 991px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 50%;
+  margin-left: 0px;
+}
+
+@media (max-width: 991px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.primary-specs {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  color: #fff;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .primary-specs {
+    margin-top: 24px;
+  }
+}
+
+.spec-item {
+  border-radius: 10px;
+  background-color: rgba(6, 8, 12, 0.25);
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 25px 27px;
+}
+
+@media (max-width: 991px) {
+  .spec-item {
+    padding: 0 20px;
+  }
+}
+
+.spec-label {
+  font-family: Poppins, sans-serif;
+}
+#Npri,
+#Bmax,
+.volt-per-turn,
+.bmax-value {
+  margin-bottom: 20px;
+}
+.spec-value {
+  border-radius: 6px;
+  background-color: #d9d9d9;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  height: 40px;
+}
+
+.primary-turns {
+  margin-top: 20px;
+  font: 600 32px Poppins, sans-serif;
+}
+
+.bmax-check {
+  border-radius: 10px;
+  background-color: rgba(6, 8, 12, 0.25);
+  display: flex;
+  margin-top: 24px;
+  flex-direction: column;
+  font-size: 32px;
+  padding: 29px 26px 80px;
+}
+
+@media (max-width: 991px) {
+  .bmax-check {
+    padding: 0 20px;
+  }
+}
+
+.bmax-label {
+  color: #7889e1;
+  font-family: Poppins, sans-serif;
+  font-weight: 800;
+}
+
+.npri-label {
+  margin-top: 18px;
+  font: 400 24px Poppins, sans-serif;
+}
+
+.npri-value {
+  border-radius: 6px;
+  background-color: #d9d9d9;
+  margin-top: 18px;
+  height: 53px;
+}
+
+.bmax-value {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  margin: 31px 0 5px;
+}
+
+.secondary-specs {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 991px) {
+  .secondary-specs {
+    margin-top: 25px;
+  }
+}
+
+.output-specs {
+  border-radius: 10px;
+  background-color: rgba(6, 8, 12, 0.25);
+  display: flex;
+  flex-direction: column;
+  font-size: 32px;
+  text-align: center;
+  padding: 27px 30px;
+}
+
+@media (max-width: 991px) {
+  .output-specs {
+    padding: 0 20px;
+  }
+}
+
+.output-voltage {
+  font: 400 24px Poppins, sans-serif;
+}
+
+.output-current {
+  margin-top: 9px;
+  font: 400 24px Poppins, sans-serif;
+}
+
+.output-power {
+  font-family: Poppins, sans-serif;
+  margin-top: 19px;
+}
+
+.nsec {
+  font-family: Poppins, sans-serif;
+  margin-top: 20px;
+}
+
+.volt-per-turn {
+  font-family: Poppins, sans-serif;
+  margin-top: 12px;
+}
+
+.wire-specs {
+  border-radius: 10px;
+  background-color: rgba(6, 8, 12, 0.25);
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  text-align: center;
+  padding: 27px 30px;
+  margin-top: 24px;
+  /* 
+
+
+  align-items: start;
+  
+*/
+}
+
+@media (max-width: 991px) {
+  .wire-specs {
+    padding-left: 20px;
+  }
+}
+
+.secondary-wire-size {
+  text-align: center;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+}
+
+.primary-wire-size {
+  text-align: center;
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.secondary-parallel {
+  margin-top: 14px;
+  font: 32px Poppins, sans-serif;
+}
+
+.primary-parallel {
+  margin-top: 19px;
+  font: 32px Poppins, sans-serif;
+}
+
+.winding-specs {
+  border-radius: 10px;
+  background-color: rgba(6, 8, 12, 0.25);
+  display: flex;
+  margin-top: 17px;
+  flex-direction: column;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 57px 40px;
+}
+
+@media (max-width: 991px) {
+  .winding-specs {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.primary-winding {
+  font-family: Poppins, sans-serif;
+  align-self: center;
+}
+
+@media (max-width: 991px) {
+  .primary-winding {
+    max-width: 100%;
+  }
+}
+
+.secondary-winding {
+  font-family: Poppins, sans-serif;
+  margin-top: 20px;
+}
+
+@media (max-width: 991px) {
+  .secondary-winding {
+    max-width: 100%;
+  }
+}
