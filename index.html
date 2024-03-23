@@ -11,29 +11,25 @@
   <body>
     <div class="container">
       <div class="hero">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c893e5e9c23401d0c09bd8c07e91e1e0c9b0c49bdc0491c670124b4b2658b37c?apiKey=75b7aa9e3999401989375bd3fa8e7ee7&"
-          alt=""
-          class="hero-image"
-        />
+        <img src="bg.png" alt="" class="hero-image" />
         <div class="hero-content">
           <div class="row">
             <div class="column">
               <div class="primary-specs">
                 <div class="spec-item">
-                  <div class="spec-label">Primary Voltage</div>
+                  <div class="spec-label">Primary Voltage (V)</div>
                   <input type="number" class="spec-value" id="Vprimary" />
-                  <div class="spec-label">Frequency</div>
+                  <div class="spec-label">Frequency (KHz)</div>
                   <input type="number" class="spec-value" id="Frequency" />
-                  <div class="spec-label">Core Effective Area</div>
+                  <div class="spec-label">Core Effective Area (Cm²)</div>
                   <input type="number" class="spec-value" id="Carea" />
-                  <div class="spec-label">Bmax</div>
+                  <div class="spec-label">Bmax (G)</div>
                   <input type="number" class="spec-value" id="Bmax" />
                   <div class="primary-turns"><p id="Npri"></p></div>
                 </div>
                 <div class="bmax-check">
                   <div class="bmax-label">Bmax CHECKING</div>
-                  <div class="npri-label">Npri</div>
+                  <div class="npri-label">Npri (G)</div>
                   <input type="number" class="spec-value" id="NpriR" />
                   <div class="bmax-value"><p id="BmaxR"></p></div>
                 </div>
@@ -42,18 +38,20 @@
             <div class="column">
               <div class="secondary-specs">
                 <div class="output-specs">
-                  <div class="output-voltage">Output Voltage</div>
+                  <div class="output-voltage">Output Voltage (V)</div>
                   <input type="number" class="spec-value" id="Vout" />
-                  <div class="output-current">Output Current</div>
+                  <div class="output-current">Output Current (A)</div>
                   <input type="number" class="spec-value" id="Iout" />
                   <div class="output-power"><p id="P"></p></div>
                   <div class="nsec"><p id="Nsec"></p></div>
                   <div class="volt-per-turn"><p id="Volt/Turn"></p></div>
                 </div>
                 <div class="wire-specs">
-                  <div class="secondary-wire-size">Secondary Wire size</div>
+                  <div class="secondary-wire-size">
+                    Secondary Wire size (mm)
+                  </div>
                   <input type="number" class="spec-value" id="Second" />
-                  <div class="primary-wire-size">Primary Wire Size</div>
+                  <div class="primary-wire-size">Primary Wire Size (mm)</div>
                   <input type="number" class="spec-value" id="Pri" />
                   <div class="secondary-parallel">
                     <p id="SecondX"></p>
@@ -70,15 +68,13 @@
               <span style="font-weight: 400; color: rgba(91, 235, 255, 1)"
                 >Primary Turn</span
               >
-              <span style="font-weight: 400"
-                >= Npri ( Primary Wire Size X 5)</span
-              >
+              <span id="result-1" style="font-weight: 400"></span>
             </div>
             <div class="secondary-winding">
               <span style="font-weight: 400; color: rgba(91, 235, 255, 1)"
                 >Secondary Turn</span
               >
-              <span style="font-weight: 400"
+              <span id="result-2" style="font-weight: 400"
                 >= Nsec ( Secondary Wire Size X 1)</span
               >
             </div>
@@ -169,6 +165,45 @@
         document.getElementById("BmaxR").textContent = `Bmax = ${BmaxR} G`;
       }
       setInterval(GetBmax, 100);
+      function result() {
+        var Vin = document.getElementById("Vprimary").value;
+        var Hz = document.getElementById("Frequency").value;
+        var Ae = document.getElementById("Carea").value;
+        var Bmax = document.getElementById("Bmax").value;
+        var Npri = ((Vin * 1e8) / (4 * Hz * Bmax * Ae * 1e3)).toFixed(2);
+        var Vout = document.getElementById("Vout").value;
+        var Iout = document.getElementById("Iout").value;
+        var P = (Vout * Iout).toFixed(2);
+        var VTurn = (Vin / Npri).toFixed(2);
+        var Iin = (P / Vin).toFixed(2);
+        var Pri = document.getElementById("Pri").value;
+        var Second = document.getElementById("Second").value;
+        var Cdensity = 5;
+        function wireParalallel(Iout, Cdensity, Second) {
+          var result = (Iout * 0.9) / (Cdensity + 5) / (Second * Second * 1);
+          if (result < 1) {
+            return 1;
+          } else {
+            return result;
+          }
+        }
+        function PriX(Iin, Cdensity, Pri) {
+          var result = (Iin * 0.9) / (Cdensity + 5) / (Pri * Pri * 0.9);
+          if (result < 1) {
+            return 1;
+          } else {
+            return result;
+          }
+        }
+
+        document.getElementById(
+          "result-1"
+        ).textContent = `= ${Npri} ( ${Pri} X ${PriX(Iin, Cdensity, Pri)})`;
+        document.getElementById("result-2").textContent = `= ${(
+          Vout / VTurn
+        ).toFixed(2)} ( ${Second} X ${wireParalallel(Iout, Cdensity, Second)})`;
+      }
+      setInterval(result, 100);
     </script>
   </body>
 </html>
