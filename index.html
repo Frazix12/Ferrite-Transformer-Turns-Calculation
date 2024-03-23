@@ -157,17 +157,13 @@
 
         document.getElementById(
           "SecondX"
-        ).textContent = `Secondary Wire in Parallel X = ${wireParalallel(
-          Iout,
-          Cdensity,
-          Second
+        ).textContent = `Secondary Wire in Parallel X = ${Math.round(
+          wireParalallel(Iout, Cdensity, Second)
         )}`;
         document.getElementById(
           "PriX"
-        ).textContent = `Primary Wire in Parallel X = ${PriX(
-          Iin,
-          Cdensity,
-          Pri
+        ).textContent = `Primary Wire in Parallel X = ${Math.round(
+          PriX(Iin, Cdensity, Pri)
         )}`;
       }
       setInterval(getWire, 100);
@@ -215,10 +211,14 @@
 
         document.getElementById(
           "result-1"
-        ).textContent = `= ${Npri} ( ${Pri} X ${PriX(Iin, Cdensity, Pri)})`;
+        ).textContent = `= ${Npri} ( ${Pri} X ${Math.round(
+          PriX(Iin, Cdensity, Pri)
+        )})`;
         document.getElementById("result-2").textContent = `= ${(
           Vout / VTurn
-        ).toFixed(2)} ( ${Second} X ${wireParalallel(Iout, Cdensity, Second)})`;
+        ).toFixed(2)} ( ${Second} X ${Math.round(
+          wireParalallel(Iout, Cdensity, Second)
+        )})`;
       }
       setInterval(result, 100);
     </script>
