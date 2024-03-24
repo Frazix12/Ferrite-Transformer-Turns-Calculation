@@ -3,7 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ferrite Transformer Turns Calculation</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="data:image/png;base64,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"
+    />
+    <meta
+      name="description"
+      content="Ferrite Transformer Turns Calculation Tool To Calculate The Number Of Turns For Ferrite Transformers"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,7 +34,7 @@
   <body>
     <div class="container">
       <div class="hero">
-        <img src="bg.png" alt="" class="hero-image" />
+        <img src="bg.png" alt="bg" class="hero-image" />
         <div class="hero-content">
           <div class="row">
             <div class="column">
